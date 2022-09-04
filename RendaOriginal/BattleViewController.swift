@@ -86,12 +86,13 @@ class BattleViewController: UIViewController {
     
     @objc func down() {
         
-        if timeCount < 0.00 {
+        if timeCount <= 0.01 {
             if timer.isValid {
+                timeCount = 0.00
                 timer.invalidate()
             }
             
-            timeCount = 0.00
+           
             
             let nextVC = storyboard?.instantiateViewController(withIdentifier: "FinishVC") as! FinishViewController
             
@@ -100,8 +101,9 @@ class BattleViewController: UIViewController {
             
             self.present(nextVC, animated: true, completion: nil)
         
-        }else if timeCount < 3.00 {
+        }else if timeCount < 4.00 {
             timeLabel.textColor = UIColor.red
+            timeLabel.font = timeLabel.font.withSize(70)
             
             timeCount = timeCount - 0.01
             
